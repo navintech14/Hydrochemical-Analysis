@@ -1,0 +1,57 @@
+.warning {
+  color: red;
+  padding: 0;
+  margin: 0;
+  padding-top: 0.313em;
+  padding-bottom: 0.313em;
+}
+
+.formNames {
+  color: black;
+  font-weight: bold;
+  font-family: Mulish;
+  text-align: center;
+  padding: 0.75em 0.625em;
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.formNumberfield,
+.formDob,
+.formGender,
+.formFirst,
+.formLast,
+.formAddress,
+select {
+  width: 100%;
+  color: black;
+  padding: 0.75em 1.25em;
+  margin: 0.5em 0;
+  display: inline-block;
+  border: 1px solid rgb(32, 30, 30);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+select:invalid {
+  color: rgba(128, 128, 128, 0.5);
+}
+option {
+  color: black;
+}
+
+::placeholder {
+  color: grey;
+}
+
+.primaryHeading {
+  padding: 1.25em;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.5em;
+  line-height: 167.99%;
+  text-align: center;
+  letter-spacing: 0.125em;
+  color: black;
+}

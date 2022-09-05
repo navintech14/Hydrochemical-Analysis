@@ -1,0 +1,19 @@
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-wrap
+  .side-navigation-panel-select-option-selected {
+  border-left: 10px solid #2f3241;
+}
+
+.side-navigation-panel
+  .side-navigation-panel-select
+  .side-navigation-panel-select-wrap
+  .side-navigation-panel-select-option:hover {
+  border-left: 10px solid #2f3241;
+}
+
+.side-navigation-panel *,
+.side-navigation-panel:after,
+.side-navigation-panel:before {
+  border-left: none;
+}
