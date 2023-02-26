@@ -1,0 +1,19 @@
+input[type="file"]::file-selector-button {
+  display: none;
+}
+
+input[type="file"] {
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  border-color: rgb(209, 209, 209);
+}
+
+input:focus,
+input.form-control:focus {
+  border-color: rgb(209, 209, 209);
+  outline: 0 !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
