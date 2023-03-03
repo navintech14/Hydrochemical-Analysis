@@ -1,4 +1,5 @@
 body {
+  background-color: #31b6fd;
   min-height: 100vh;
   text-align: center;
   display: flex;
@@ -7,20 +8,23 @@ body {
   align-items: center;
   font-size: calc(10px + 2vmin);
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .app-logo {
-  height: 40vmin;
+  width: 15%;
+  height: auto;
   pointer-events: none;
 }
 
 .loading-header {
-  color: rgb(112, 76, 182);
+  color: white;
+  font-style: italic;
+  font-weight: 300;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -34,9 +38,14 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(10px)
+    transform: translateY(10px);
   }
   100% {
-    transform: translateY(0px)
+    transform: translateY(0px);
   }
+}
+
+.load {
+  width: 25%;
+  height: auto;
 }
