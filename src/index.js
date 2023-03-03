@@ -16,11 +16,19 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Container } from "reactstrap";
 import Dashboard from "containers/Dashboard";
 import Titlebar from "components/titlebar/Titlebar";
+import Navbar from "components/Navbar";
+import Home from "containers/Home";
 
 const routes = [
   {
     path: "/",
     name: "Dashboard",
+    element: <Home />,
+    nodeRef: createRef(),
+  },
+  {
+    path: "/dataset",
+    name: "Dataset",
     element: <Dashboard />,
     nodeRef: createRef(),
   },
@@ -59,7 +67,8 @@ function App() {
   return (
     <>
       <Titlebar />
-      <Container className="container">
+      <Navbar />
+      <Container>
         <SwitchTransition>
           <CSSTransition
             key={location.pathname}
@@ -88,23 +97,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// useEffect(() => {
-//   /**
-//    * Example call to Flask
-//    * @see /src/utils/requests.js
-//    * @see /app.py
-//    */
-//   setTimeout(
-//     () =>
-//       get(
-//         "example", // Route
-//         (response) => alert(response), // Response callback
-//         (error) => console.error(error) // Error callback
-//       ),
-//     3000
-//   );
-// }, []);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

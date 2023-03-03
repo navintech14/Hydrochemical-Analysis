@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import sys
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -5,7 +6,9 @@ from flask_cors import CORS
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+
+import matplotlib
+matplotlib.use('TkAgg')
 
 app = Flask(__name__)
 app_config = {"host": "0.0.0.0", "port": sys.argv[1]}
@@ -42,9 +45,9 @@ if "app.py" in sys.argv[0]:
 @app.route("/upload", methods=["GET", "POST"])
 def home():
     if (request.files):
-        uploadedFile = request.files.to_dict()
+        uploadedFile = request.files.to_dict()['file']
         file = pd.read_csv(uploadedFile)
-        plot(file, unit='mg/L', figname='Piper diagram', figformat='jpg')
+        plot(file, unit='mg/L', figname='Piper Diagram', figformat='jpg')
         return jsonify("Done!")
 
 
@@ -81,6 +84,7 @@ def plot(df,
     # Basic data check
     # -------------------------------------------------------------------------
     # Determine if the required geochemical parameters are defined.
+    print(df)
     if not {'Ca', 'Mg', 'Na', 'K',
             'HCO3', 'CO3', 'Cl', 'SO4'}.issubset(df.columns):
         raise RuntimeError("""
@@ -372,7 +376,7 @@ def plot(df,
 
     # Save the figure
 
-    plt.savefig(cwd + figname + '.' + figformat, format=figformat,
+    plt.savefig(cwd + '\\src\\resources\\plots\\' + figname + '.' + figformat, format=figformat,
                 bbox_inches='tight', dpi=300)
 
     return

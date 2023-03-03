@@ -17,3 +17,85 @@ input.form-control:focus {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
+
+button:focus,
+button.form-control:focus {
+  border-color: rgb(209, 209, 209);
+  outline: 0 !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.table-row {
+  vertical-align: middle;
+}
+
+.full-height {
+  height: calc(100vh - 9.75rem);
+}
+
+.uploadBox {
+  width: 800px;
+}
+
+.inActiveButton,
+.activeButton:hover {
+  color: black;
+  background-color: white;
+  border-color: #044553;
+  cursor: pointer;
+}
+
+.activeButton,
+.inActiveButton:hover {
+  color: white;
+  background-color: #044553;
+  border-color: #044553;
+  cursor: pointer;
+}
+
+.activeButton:focus {
+  color: white;
+  background-color: #044553;
+  border-color: #044553;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.activeButton:active {
+  box-shadow: none;
+}
+
+.option {
+  border-bottom: 1px solid #044553;
+}
+
+.optionTitle {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.viewButton,
+.viewButton:hover,
+.viewButton:focus,
+.viewButton:active {
+  background-color: #044553;
+  box-shadow: none;
+}
+
+.plotButton,
+.plotButton:hover,
+.plotButton:focus,
+.plotButton:active {
+  background-color: #259faf;
+  box-shadow: none;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: calc(100vh - 23rem);
+  overflow: auto;
+}
