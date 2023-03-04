@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
-from flask import Flask, jsonify, request, json, send_file
+from flask import Flask, jsonify, request, json, send_from_directory
 from flask_cors import CORS
 
 import os
@@ -79,7 +79,8 @@ colors = [
 
 @app.route("/get_image_url", methods=["GET", "POST"])
 def get_image_url():
-    print(request.json())
+    fileName = request.get_data().decode('utf-8')
+    return send_from_directory('src/resources/plots', fileName)
 
 
 @app.route("/upload", methods=["GET", "POST"])

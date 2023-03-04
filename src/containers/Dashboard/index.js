@@ -15,7 +15,7 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import { get, post, postImage } from "utils/requests";
+import { post, postImage } from "utils/requests";
 import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
     TDS: "",
   });
   const [modal, setModal] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState([]);
 
   const toggle = () => setModal(!modal);
 
@@ -53,24 +53,24 @@ const Dashboard = () => {
       (response) => {
         const diagram = async () => {
           if (response) {
-            console.log("response", response);
-            // const blob = await response.blob();
-            // const imageUrls = URL.createObjectURL(blob);
-            // setImageUrl(imageUrls);
-
-            const urls = await Promise.all(
-              data.image_filenames.map(async (filename) => {
+            await Promise.all(
+              response.images.map(async (filename) => {
                 await postImage(
                   filename,
-                  "get_image_url",
-                  (response) => console.log(response),
+                  "/get_image_url",
+                  (response) => {
+                    const url = async () => {
+                      const blob = await response.blob();
+                      const imageUrls = URL.createObjectURL(blob);
+                      imageUrl.push(imageUrls);
+                      return;
+                    };
+                    url();
+                  },
                   (error) => console.log(error)
                 );
-                const blob = await response.blob();
-                return URL.createObjectURL(blob);
               })
             );
-            console.log("urls", urls);
           }
         };
         diagram();
@@ -204,6 +204,7 @@ const Dashboard = () => {
 
   return (
     <Card className="mt-3 full-height">
+      {console.log("imageUrl", imageUrl)}
       <CardBody>
         <>
           <Row className="option text-center pb-3">

@@ -49,6 +49,7 @@ export const postImage = (body, route, callback, errorCallback) => {
   fetch(`http://localhost:${port}/${route}`, {
     body,
     method: "POST",
+    headers: { "Content-type": "application/json" },
   })
     .then((response) => response)
     .then(callback)
