@@ -18,6 +18,7 @@ import Dashboard from "containers/Dashboard";
 import Titlebar from "components/titlebar/Titlebar";
 import Navbar from "components/Navbar";
 import Home from "containers/Home";
+import Plots from "containers/Plots";
 
 const routes = [
   {
@@ -32,19 +33,12 @@ const routes = [
     element: <Dashboard />,
     nodeRef: createRef(),
   },
-  // {
-  //   path: '/project',
-  //   name: 'Project',
-  //   element: <Project />,
-  //   nodeRef: createRef(),
-  // },
-  // { path: '/about', name: 'About', element: <About />, nodeRef: createRef() },
-  // {
-  //   path: '/contact',
-  //   name: 'Contact',
-  //   element: <Contact />,
-  //   nodeRef: createRef(),
-  // },
+  {
+    path: "/plots",
+    name: "Plots",
+    element: <Plots />,
+    nodeRef: createRef(),
+  },
 ];
 
 const router = createHashRouter([

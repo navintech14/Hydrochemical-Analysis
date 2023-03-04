@@ -99,3 +99,13 @@ button.form-control:focus {
   height: calc(100vh - 23rem);
   overflow: auto;
 }
+
+.my-custom-scrollbar2 {
+  position: relative;
+  height: calc(100vh - 25rem);
+  overflow: auto;
+}
+
+.inputGroupText {
+  width: 75px;
+}

@@ -36,6 +36,11 @@ function Navbar() {
                     Dataset
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink style={navStyle} to="/plots">
+                    Plots
+                  </NavLink>
+                </NavItem>
               </Nav>
             </Col>
           </Row>

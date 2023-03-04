@@ -1,0 +1,56 @@
+.plotsPage {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.inActiveButton,
+.activeButton:hover {
+  color: black;
+  background-color: white;
+  border-color: #044553;
+  cursor: pointer;
+}
+
+.activeButton,
+.inActiveButton:hover {
+  color: white;
+  background-color: #044553;
+  border-color: #044553;
+  cursor: pointer;
+}
+
+.activeButton:focus {
+  color: white;
+  background-color: #044553;
+  border-color: #044553;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.activeButton:active {
+  box-shadow: none;
+}
+
+.piperSize {
+  width: 50%;
+  height: auto;
+}
+
+.durovSize {
+  width: 40%;
+  height: auto;
+}
+
+.gibbsSize {
+  width: 50%;
+  height: auto;
+}
+
+.chadhaSize {
+  width: 40%;
+  height: auto;
+}
+
+.full-height-plots {
+  height: calc(100vh - 17rem);
+}

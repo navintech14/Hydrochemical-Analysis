@@ -4,27 +4,44 @@ import {
   Card,
   CardBody,
   Col,
-  Container,
   Form,
   FormGroup,
   Input,
   InputGroup,
   InputGroupText,
-  Nav,
-  NavLink,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Row,
 } from "reactstrap";
 import { post } from "utils/requests";
 import Papa from "papaparse";
+import BootstrapTable from "react-bootstrap-table-next";
 
 import "./dashboardStyle.scss";
-import BootstrapTable from "react-bootstrap-table-next";
 
 const Dashboard = () => {
   const [dataset, setDataset] = useState(null);
   const [data, setData] = useState([]);
   const [viewSpreadsheet, setViewSpreadsheet] = useState(false);
   const [uploadDataset, setUploadDataset] = useState(true);
+  const [manualEntry, setManualEntry] = useState([]);
+  const [entry, setEntry] = useState({
+    pH: "",
+    Ca: "",
+    Mg: "",
+    Na: "",
+    K: "",
+    HCO3: "",
+    CO3: "",
+    Cl: "",
+    SO4: "",
+    TDS: "",
+  });
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
 
   const postFile = async (file) => {
     const formData = new FormData();
@@ -37,12 +54,13 @@ const Dashboard = () => {
     );
   };
 
-  const initialValues = {
-    manualEntryDataset: [
-      {
-        pH: "",
-      },
-    ],
+  const postManual = async (data) => {
+    await post(
+      JSON.stringify(data),
+      "/upload",
+      (response) => alert(response),
+      (error) => alert(error)
+    );
   };
 
   const columns = [
@@ -117,7 +135,7 @@ const Dashboard = () => {
       dataField: "#",
       text: "#",
       isDummyField: true,
-      formatter: (cell, row, rowIndex) => rowIndex + 1,
+      formatter: (rowIndex) => rowIndex + 1,
     },
     {
       dataField: "pH",
@@ -257,36 +275,194 @@ const Dashboard = () => {
                   <span className="optionTitle">Manual Entry</span>
                 </Col>
               </Row>
+              <Row>
+                <Col className="d-flex justify-content-end">
+                  <Button className="plotButton" onClick={toggle}>
+                    +Add Data
+                  </Button>
+                </Col>
+              </Row>
               <Form
-                initialvalues={initialValues}
                 onSubmit={(e) => {
                   e.preventDefault();
-                  postFile(dataset);
+                  postManual(manualEntry);
                 }}
               >
-                {({ isValid, values, errors, setFieldValue, handleChange }) => {
-                  return (
-                    <Row className="mt-3 d-flex flex-column">
-                      <Col className="overflow-auto">
-                        {console.log(values)}
-                        {/* <BootstrapTable
+                <Row className="mt-3 d-flex flex-column">
+                  <Col className="overflow-auto">
+                    {manualEntry.length !== 0 && (
+                      <Row className="my-custom-scrollbar2">
+                        <BootstrapTable
                           bootstrap4
                           keyField="id"
-                          data={manualEntryDataset}
+                          data={manualEntry}
                           columns={manualEntryColumns}
                           classes="table-responsive table"
                           headerClasses="table-header"
                           rowClasses="table-row"
-                        /> */}
-                      </Col>
-                      <Col>
-                        <Button type="submit" className="plotButton">
-                          Plot
+                        />
+                      </Row>
+                    )}
+                  </Col>
+                  <Col className="mt-3 d-flex justify-content-end">
+                    <Modal scrollable isOpen={modal} toggle={toggle}>
+                      <ModalHeader toggle={toggle}>Enter Data</ModalHeader>
+                      <ModalBody className="overflow-auto">
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            pH
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, pH: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            Ca
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, Ca: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            Mg
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, Mg: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            Na
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, Na: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            K
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, K: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            HCO3
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, HCO3: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            CO3
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, CO3: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            Cl
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, Cl: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            SO4
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, SO4: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                        <InputGroup className="m-1">
+                          <InputGroupText className="inputGroupText">
+                            TDS
+                          </InputGroupText>
+                          <Input
+                            className=""
+                            onChange={(e) => {
+                              setEntry({ ...entry, TDS: e.target.value });
+                            }}
+                          />
+                        </InputGroup>
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button
+                          className="addButton"
+                          onClick={() => {
+                            setManualEntry([
+                              ...manualEntry,
+                              {
+                                id: manualEntry.length + 1,
+                                pH: entry.pH,
+                                Ca: entry.Ca,
+                                Mg: entry.Mg,
+                                Na: entry.Na,
+                                K: entry.K,
+                                HCO3: entry.HCO3,
+                                CO3: entry.CO3,
+                                Cl: entry.Cl,
+                                SO4: entry.SO4,
+                                TDS: entry.TDS,
+                              },
+                            ]);
+                            toggle();
+                          }}
+                        >
+                          Add
                         </Button>
-                      </Col>
-                    </Row>
-                  );
-                }}
+                        <Button className="cancelButton" onClick={toggle}>
+                          Cancel
+                        </Button>
+                      </ModalFooter>
+                    </Modal>
+                    {manualEntry.length !== 0 && (
+                      <Button type="submit" className="plotButton">
+                        Plot
+                      </Button>
+                    )}
+                  </Col>
+                  {/* <Col className="d-flex justify-content-end">
+                    {manualEntry.length !== 0 && (
+                      <Button type="submit" className="plotButton">
+                        Plot
+                      </Button>
+                    )}
+                  </Col> */}
+                </Row>
               </Form>
             </>
           )}
