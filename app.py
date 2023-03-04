@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
-from flask import Flask, jsonify, request, json
+from flask import Flask, jsonify, request, json, send_file
 from flask_cors import CORS
 
 import os
@@ -77,6 +77,11 @@ colors = [
 ]
 
 
+@app.route("/get_image_url", methods=["GET", "POST"])
+def get_image_url():
+    print(request.json())
+
+
 @app.route("/upload", methods=["GET", "POST"])
 def home():
     if (request.files):
@@ -88,7 +93,9 @@ def home():
         gibbsPlot(file, unit='mg/L', figname='Gibbs Diagram', figformat='jpg')
         chadhaPlot(file, unit='mg/L',
                    figname='Chadha Diagram', figformat='jpg')
-        return jsonify("Plotted")
+        images = ['Piper Diagram.jpg', 'Durov Diagram.jpg',
+                  'Gibbs Diagram.jpg', 'Chadha Diagram.jpg']
+        return {'images': images}
     else:
         uploadedData = json.loads(request.get_data().decode('utf-8'))
         for i in range(len(uploadedData)):

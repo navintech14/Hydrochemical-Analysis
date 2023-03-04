@@ -70,14 +70,16 @@ const Plots = () => {
           <Col className="d-flex justify-content-center align-items-center text-center">
             {/* {piperPlot && (
               <Col>
-                <img
-                  src={require("../../resources/plots/Piper Diagram.jpg")}
-                  alt="Piper Plot"
-                  className="piperSize"
-                />
+                {piperData && (
+                  <img
+                    src={require("../../resources/plots/Piper Diagram.jpg")}
+                    alt="Piper Plot"
+                    className="piperSize"
+                  />
+                )}
               </Col>
-            )}
-            {durovPlot && (
+            )} */}
+            {/*{durovPlot && (
               <Col>
                 <img
                   src={require("../../resources/plots/Durov Diagram.jpg")}

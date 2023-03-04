@@ -15,7 +15,7 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import { post } from "utils/requests";
+import { get, post, postImage } from "utils/requests";
 import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
 
@@ -40,6 +40,7 @@ const Dashboard = () => {
     TDS: "",
   });
   const [modal, setModal] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
 
   const toggle = () => setModal(!modal);
 
@@ -49,7 +50,31 @@ const Dashboard = () => {
     await post(
       formData,
       "/upload",
-      (response) => alert(response),
+      (response) => {
+        const diagram = async () => {
+          if (response) {
+            console.log("response", response);
+            // const blob = await response.blob();
+            // const imageUrls = URL.createObjectURL(blob);
+            // setImageUrl(imageUrls);
+
+            const urls = await Promise.all(
+              data.image_filenames.map(async (filename) => {
+                await postImage(
+                  filename,
+                  "get_image_url",
+                  (response) => console.log(response),
+                  (error) => console.log(error)
+                );
+                const blob = await response.blob();
+                return URL.createObjectURL(blob);
+              })
+            );
+            console.log("urls", urls);
+          }
+        };
+        diagram();
+      },
       (error) => alert(error)
     );
   };
@@ -132,10 +157,8 @@ const Dashboard = () => {
 
   const manualEntryColumns = [
     {
-      dataField: "#",
+      dataField: "id",
       text: "#",
-      isDummyField: true,
-      formatter: (rowIndex) => rowIndex + 1,
     },
     {
       dataField: "pH",

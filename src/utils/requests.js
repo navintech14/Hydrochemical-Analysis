@@ -44,3 +44,15 @@ export const post = (body, route, callback, errorCallback) => {
       errorCallback ? errorCallback(error) : console.error(error)
     );
 };
+
+export const postImage = (body, route, callback, errorCallback) => {
+  fetch(`http://localhost:${port}/${route}`, {
+    body,
+    method: "POST",
+  })
+    .then((response) => response)
+    .then(callback)
+    .catch((error) =>
+      errorCallback ? errorCallback(error) : console.error(error)
+    );
+};
