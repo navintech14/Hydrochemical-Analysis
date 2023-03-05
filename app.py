@@ -121,7 +121,9 @@ def home():
         gibbsPlot(file, unit='mg/L', figname='Gibbs Diagram', figformat='jpg')
         chadhaPlot(file, unit='mg/L',
                    figname='Chadha Diagram', figformat='jpg')
-        return jsonify('Plotted')
+        images = ['Piper Diagram.jpg', 'Durov Diagram.jpg',
+                  'Gibbs Diagram.jpg', 'Chadha Diagram.jpg']
+        return {'images': images}
 
 
 def piperPlot(df,

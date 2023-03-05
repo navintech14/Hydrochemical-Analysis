@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllGraph, fetchData } from "./graphSlice";
+import { map } from "lodash";
 
 import "./plotsStyle.scss";
 
 const Plots = () => {
+  const dispatch = useDispatch();
+  const data = useSelector(getAllGraph);
+
   const [piperPlot, setPiperPlot] = useState(true);
   const [durovPlot, setDurovPlot] = useState(false);
   const [gibbsPlot, setGibbsPlot] = useState(false);
   const [chadhaPlot, setChadhaPlot] = useState(false);
+
+  const [piperUrl, setPiperUrl] = useState("");
+  const [durovUrl, setDurovUrl] = useState("");
+  const [gibbsUrl, setGibbsUrl] = useState("");
+  const [chadhaUrl, setChadhaUrl] = useState("");
+
+  useEffect(() => {
+    map(data, (item) => {
+      if (item["Piper Diagram.jpg"]) setPiperUrl(item["Piper Diagram.jpg"]);
+      if (item["Durov Diagram.jpg"]) setDurovUrl(item["Durov Diagram.jpg"]);
+      if (item["Gibbs Diagram.jpg"]) setGibbsUrl(item["Gibbs Diagram.jpg"]);
+      if (item["Chadha Diagram.jpg"]) setChadhaUrl(item["Chadha Diagram.jpg"]);
+    });
+    dispatch(fetchData([])); // eslint-disable-next-line
+  }, [dispatch]);
 
   return (
     <Card className="mt-3 full-height">
@@ -68,44 +89,26 @@ const Plots = () => {
         </Row>
         <Row className="mt-3 full-height-plots">
           <Col className="d-flex justify-content-center align-items-center text-center">
-            {/* {piperPlot && (
+            {piperPlot && (
               <Col>
-                {piperData && (
-                  <img
-                    src={require("../../resources/plots/Piper Diagram.jpg")}
-                    alt="Piper Plot"
-                    className="piperSize"
-                  />
-                )}
+                <img src={piperUrl} alt="Piper Plot" className="piperSize" />
               </Col>
-            )} */}
-            {/*{durovPlot && (
+            )}
+            {durovPlot && (
               <Col>
-                <img
-                  src={require("../../resources/plots/Durov Diagram.jpg")}
-                  alt="Durov Plot"
-                  className="durovSize"
-                />
+                <img src={durovUrl} alt="Durov Plot" className="durovSize" />
               </Col>
             )}
             {gibbsPlot && (
               <Col>
-                <img
-                  src={require("../../resources/plots/Gibbs Diagram.jpg")}
-                  alt="Gibbs Plot"
-                  className="gibbsSize"
-                />
+                <img src={gibbsUrl} alt="Gibbs Plot" className="gibbsSize" />
               </Col>
             )}
             {chadhaPlot && (
               <Col>
-                <img
-                  src={require("../../resources/plots/Chadha Diagram.jpg")}
-                  alt="Chadha Plot"
-                  className="chadhaSize"
-                />
+                <img src={chadhaUrl} alt="Chadha Plot" className="chadhaSize" />
               </Col>
-            )} */}
+            )}
           </Col>
         </Row>
       </CardBody>

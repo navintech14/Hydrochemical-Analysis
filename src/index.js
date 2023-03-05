@@ -19,6 +19,8 @@ import Titlebar from "components/titlebar/Titlebar";
 import Navbar from "components/Navbar";
 import Home from "containers/Home";
 import Plots from "containers/Plots";
+import Purpose from "containers/Purpose";
+import Report from "containers/Report";
 
 const routes = [
   {
@@ -37,6 +39,18 @@ const routes = [
     path: "/plots",
     name: "Plots",
     element: <Plots />,
+    nodeRef: createRef(),
+  },
+  {
+    path: "/purpose",
+    name: "Purpose",
+    element: <Purpose />,
+    nodeRef: createRef(),
+  },
+  {
+    path: "/report",
+    name: "Report",
+    element: <Report />,
     nodeRef: createRef(),
   },
 ];
@@ -84,11 +98,9 @@ function App() {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>,
   document.getElementById("root")
 );
 

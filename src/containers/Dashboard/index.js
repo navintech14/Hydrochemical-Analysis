@@ -18,10 +18,16 @@ import {
 import { post, postImage } from "utils/requests";
 import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData, getAllGraph } from "../Plots/graphSlice";
 
 import "./dashboardStyle.scss";
+import Loader from "components/Loader";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const urlData = useSelector(getAllGraph);
+
   const [dataset, setDataset] = useState(null);
   const [data, setData] = useState([]);
   const [viewSpreadsheet, setViewSpreadsheet] = useState(false);
@@ -40,7 +46,7 @@ const Dashboard = () => {
     TDS: "",
   });
   const [modal, setModal] = useState(false);
-  const [imageUrl, setImageUrl] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const toggle = () => setModal(!modal);
 
@@ -52,7 +58,9 @@ const Dashboard = () => {
       "/upload",
       (response) => {
         const diagram = async () => {
+          let imageUrl = [];
           if (response) {
+            setLoader(false);
             await Promise.all(
               response.images.map(async (filename) => {
                 await postImage(
@@ -62,8 +70,8 @@ const Dashboard = () => {
                     const url = async () => {
                       const blob = await response.blob();
                       const imageUrls = URL.createObjectURL(blob);
-                      imageUrl.push(imageUrls);
-                      return;
+                      imageUrl = [...imageUrl, { [`${filename}`]: imageUrls }];
+                      dispatch(fetchData(...urlData, imageUrl));
                     };
                     url();
                   },
@@ -83,7 +91,33 @@ const Dashboard = () => {
     await post(
       JSON.stringify(data),
       "/upload",
-      (response) => alert(response),
+      (response) => {
+        const diagram = async () => {
+          let imageUrl = [];
+          if (response) {
+            setLoader(false);
+            await Promise.all(
+              response.images.map(async (filename) => {
+                await postImage(
+                  filename,
+                  "/get_image_url",
+                  (response) => {
+                    const url = async () => {
+                      const blob = await response.blob();
+                      const imageUrls = URL.createObjectURL(blob);
+                      imageUrl = [...imageUrl, { [`${filename}`]: imageUrls }];
+                      dispatch(fetchData(...urlData, imageUrl));
+                    };
+                    url();
+                  },
+                  (error) => console.log(error)
+                );
+              })
+            );
+          }
+        };
+        diagram();
+      },
       (error) => alert(error)
     );
   };
@@ -204,7 +238,6 @@ const Dashboard = () => {
 
   return (
     <Card className="mt-3 full-height">
-      {console.log("imageUrl", imageUrl)}
       <CardBody>
         <>
           <Row className="option text-center pb-3">
@@ -237,6 +270,7 @@ const Dashboard = () => {
                   <Form
                     onSubmit={(e) => {
                       e.preventDefault();
+                      setLoader(true);
                       postFile(dataset);
                     }}
                   >
@@ -309,6 +343,7 @@ const Dashboard = () => {
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
+                  setLoader(true);
                   postManual(manualEntry);
                 }}
               >
@@ -479,17 +514,11 @@ const Dashboard = () => {
                       </Button>
                     )}
                   </Col>
-                  {/* <Col className="d-flex justify-content-end">
-                    {manualEntry.length !== 0 && (
-                      <Button type="submit" className="plotButton">
-                        Plot
-                      </Button>
-                    )}
-                  </Col> */}
                 </Row>
               </Form>
             </>
           )}
+          {loader && <Loader />}
         </>
       </CardBody>
     </Card>

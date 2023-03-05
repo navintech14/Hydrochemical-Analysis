@@ -1,0 +1,78 @@
+.page__loader {
+  // position: relative;
+  width: 100px;
+  height: 200px;
+  z-index: 1000;
+  border-radius: 10%;
+  background-color: #152636;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  svg {
+    height: 120px;
+    z-index: 10001;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-44%, -55%);
+    #rect4487 {
+      fill: #152636;
+    }
+  }
+  .loader {
+    height: 80px;
+    width: 75px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+  .water {
+    background: white;
+    position: relative;
+    top: 50%;
+    height: 200%;
+    width: 200%;
+    z-index: 1000;
+    border-radius: 38%;
+    left: -50%;
+    // transform: rotate(360deg);
+    transition: all 1s ease;
+    animation: wave 5s linear infinite, movetop 10s linear forwards;
+  }
+  @keyframes movetop {
+    0% {
+      top: 60%;
+    }
+    100% {
+      top: 10px;
+    }
+  }
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.modal {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .modalContent {
+    background-color: #152636;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2.5%;
+    width: 210px;
+    height: 210px;
+
+    .modalBody {
+      padding: 0;
+    }
+  }
+}

@@ -25,7 +25,7 @@ function Navbar() {
         <CardBody>
           <Row className="mx-2">
             <Col>
-              <Nav justified pills>
+              <Nav fill pills>
                 <NavItem>
                   <NavLink style={navStyle} to="/">
                     Dashboard
@@ -39,6 +39,16 @@ function Navbar() {
                 <NavItem>
                   <NavLink style={navStyle} to="/plots">
                     Plots
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink style={navStyle} to="/purpose">
+                    Purpose of Water
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink style={navStyle} to="/report">
+                    Report
                   </NavLink>
                 </NavItem>
               </Nav>

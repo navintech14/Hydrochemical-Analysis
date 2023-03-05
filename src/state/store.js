@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from 'components/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import graphsReducer from "../containers/Plots/graphSlice";
 
 export default configureStore({
   reducer: {
-    counter: counterReducer
-  }
+    graphs: graphsReducer,
+  },
 });
