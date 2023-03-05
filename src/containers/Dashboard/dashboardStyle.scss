@@ -94,6 +94,22 @@ button.form-control:focus {
   box-shadow: none;
 }
 
+.addButton,
+.addButton:hover,
+.addButton:focus,
+.addButton:active {
+  background-color: #044553;
+  box-shadow: none;
+}
+
+.cancelButton,
+.cancelButton:hover,
+.cancelButton:focus,
+.cancelButton:active {
+  background-color: #259faf;
+  box-shadow: none;
+}
+
 .my-custom-scrollbar {
   position: relative;
   height: calc(100vh - 23rem);
