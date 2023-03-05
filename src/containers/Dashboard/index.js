@@ -20,6 +20,7 @@ import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, getAllGraph } from "../Plots/graphSlice";
+import { fetchPurpose } from "containers/Purpose/purposeSlice";
 
 import "./dashboardStyle.scss";
 import Loader from "components/Loader";
@@ -61,6 +62,8 @@ const Dashboard = () => {
           let imageUrl = [];
           if (response) {
             setLoader(false);
+            dispatch(fetchPurpose([]));
+            dispatch(fetchPurpose(response.data));
             await Promise.all(
               response.images.map(async (filename) => {
                 await postImage(
@@ -96,6 +99,8 @@ const Dashboard = () => {
           let imageUrl = [];
           if (response) {
             setLoader(false);
+            dispatch(fetchPurpose([]));
+            dispatch(fetchPurpose(response.data));
             await Promise.all(
               response.images.map(async (filename) => {
                 await postImage(

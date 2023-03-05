@@ -44,24 +44,6 @@ if "app.py" in sys.argv[0]:
 #   return jsonify("Example response from Flask! Learn more in /app.py & /src/components/App.js")
 
 
-my_dict = {
-    'Sample': [],
-    'Label': [],
-    'Color': [],
-    'Marker': [],
-    'Size': [],
-    'Alpha': [],
-    'Ca': [],
-    'Mg': [],
-    'Na': [],
-    'K': [],
-    'HCO3': [],
-    'CO3': [],
-    'Cl': [],
-    'SO4': [],
-    'TDS': []
-}
-
 colors = [
     'red',
     'blue',
@@ -75,6 +57,27 @@ colors = [
     'olive',
     'cyan'
 ]
+
+
+def categorize_water(row):
+    # Initialize purpose as "Unknown"
+    purpose = "Unknown"
+
+    # Check pH
+    if row['pH'] >= 6.5 and row['pH'] <= 8.5:
+        # Check Ca, Mg, and HCO3
+        if row['Ca'] + row['Mg'] >= 60 and row['Ca'] / (row['Ca'] + row['Mg']) >= 0.2 and row['HCO3'] >= 50:
+            purpose = "Drinking"
+        # Check Na and Cl
+        elif row['Na'] + row['Cl'] >= 200:
+            purpose = "Irrigation"
+        # Check TDS
+        elif row['TDS'] >= 1000:
+            purpose = "Industrial"
+        else:
+            purpose = "Not Suitable"
+
+    return purpose
 
 
 @app.route("/get_image_url", methods=["GET", "POST"])
@@ -94,36 +97,58 @@ def home():
         gibbsPlot(file, unit='mg/L', figname='Gibbs Diagram', figformat='jpg')
         chadhaPlot(file, unit='mg/L',
                    figname='Chadha Diagram', figformat='jpg')
+        file['Purpose'] = file.apply(categorize_water, axis=1)
         images = ['Piper Diagram.jpg', 'Durov Diagram.jpg',
                   'Gibbs Diagram.jpg', 'Chadha Diagram.jpg']
-        return {'images': images}
+        return {'images': images, 'data': file.to_dict('records')}
     else:
+        my_dict = {
+            'Sample': [],
+            'Label': [],
+            'Color': [],
+            'Marker': [],
+            'Size': [],
+            'Alpha': [],
+            'pH': [],
+            'Ca': [],
+            'Mg': [],
+            'Na': [],
+            'K': [],
+            'HCO3': [],
+            'CO3': [],
+            'Cl': [],
+            'SO4': [],
+            'TDS': []
+        }
         uploadedData = json.loads(request.get_data().decode('utf-8'))
         for i in range(len(uploadedData)):
-            my_dict['Sample'].append('sample' + str(i))
-            my_dict['Label'].append('C' + str(i))
+            my_dict['Sample'].append('sample' + str(i+1))
+            my_dict['Label'].append('C' + str(i+1))
             my_dict['Color'].append(colors[i])
             my_dict['Marker'].append('o')
             my_dict['Size'].append(30)
             my_dict['Alpha'].append(0.6)
-            my_dict['Ca'].append(int(uploadedData[i]['Ca']))
-            my_dict['Mg'].append(int(uploadedData[i]['Mg']))
-            my_dict['Na'].append(int(uploadedData[i]['Na']))
-            my_dict['K'].append(int(uploadedData[i]['K']))
-            my_dict['HCO3'].append(int(uploadedData[i]['HCO3']))
-            my_dict['CO3'].append(int(uploadedData[i]['CO3']))
-            my_dict['Cl'].append(int(uploadedData[i]['Cl']))
-            my_dict['SO4'].append(int(uploadedData[i]['SO4']))
-            my_dict['TDS'].append(int(uploadedData[i]['TDS']))
+            my_dict['pH'].append(float(uploadedData[i]['pH']))
+            my_dict['Ca'].append(float(uploadedData[i]['Ca']))
+            my_dict['Mg'].append(float(uploadedData[i]['Mg']))
+            my_dict['Na'].append(float(uploadedData[i]['Na']))
+            my_dict['K'].append(float(uploadedData[i]['K']))
+            my_dict['HCO3'].append(float(uploadedData[i]['HCO3']))
+            my_dict['CO3'].append(float(uploadedData[i]['CO3']))
+            my_dict['Cl'].append(float(uploadedData[i]['Cl']))
+            my_dict['SO4'].append(float(uploadedData[i]['SO4']))
+            my_dict['TDS'].append(float(uploadedData[i]['TDS']))
         file = pd.DataFrame(my_dict)
         piperPlot(file, unit='mg/L', figname='Piper Diagram', figformat='jpg')
         durovPlot(file, unit='mg/L', figname='Durov Diagram', figformat='jpg')
         gibbsPlot(file, unit='mg/L', figname='Gibbs Diagram', figformat='jpg')
         chadhaPlot(file, unit='mg/L',
                    figname='Chadha Diagram', figformat='jpg')
+        file['Purpose'] = file.apply(categorize_water, axis=1)
+        print(file)
         images = ['Piper Diagram.jpg', 'Durov Diagram.jpg',
                   'Gibbs Diagram.jpg', 'Chadha Diagram.jpg']
-        return {'images': images}
+        return {'images': images, 'data': file.to_dict('records')}
 
 
 def piperPlot(df,
