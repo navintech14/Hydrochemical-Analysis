@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, CardBody, Col, Row, Spinner } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllGraph, fetchData } from "./graphSlice";
-import { map, isEmpty } from "lodash";
+import { useSelector } from "react-redux";
+import { getAllGraph } from "./graphSlice";
+import { map } from "lodash";
 
 import "./plotsStyle.scss";
 
 const Plots = () => {
-  const dispatch = useDispatch();
   const data = useSelector(getAllGraph);
 
   const [piperPlot, setPiperPlot] = useState(true);

@@ -18,8 +18,8 @@ import {
 import { post, postImage } from "utils/requests";
 import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData, getAllGraph } from "../Plots/graphSlice";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../Plots/graphSlice";
 import { fetchPurpose } from "containers/Purpose/purposeSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,6 @@ import Loader from "components/Loader";
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const urlData = useSelector(getAllGraph);
 
   const [dataset, setDataset] = useState(null);
   const [data, setData] = useState([]);
