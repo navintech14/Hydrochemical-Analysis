@@ -21,11 +21,13 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, getAllGraph } from "../Plots/graphSlice";
 import { fetchPurpose } from "containers/Purpose/purposeSlice";
+import { useNavigate } from "react-router-dom";
 
 import "./dashboardStyle.scss";
 import Loader from "components/Loader";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlData = useSelector(getAllGraph);
 
@@ -62,6 +64,7 @@ const Dashboard = () => {
           let imageUrl = [];
           if (response) {
             setLoader(false);
+            dispatch(fetchData([]));
             dispatch(fetchPurpose([]));
             dispatch(fetchPurpose(response.data));
             await Promise.all(
@@ -74,7 +77,7 @@ const Dashboard = () => {
                       const blob = await response.blob();
                       const imageUrls = URL.createObjectURL(blob);
                       imageUrl = [...imageUrl, { [`${filename}`]: imageUrls }];
-                      dispatch(fetchData(...urlData, imageUrl));
+                      dispatch(fetchData(imageUrl));
                     };
                     url();
                   },
@@ -85,6 +88,7 @@ const Dashboard = () => {
           }
         };
         diagram();
+        navigate("/plots");
       },
       (error) => alert(error)
     );
@@ -99,6 +103,7 @@ const Dashboard = () => {
           let imageUrl = [];
           if (response) {
             setLoader(false);
+            dispatch(fetchData([]));
             dispatch(fetchPurpose([]));
             dispatch(fetchPurpose(response.data));
             await Promise.all(
@@ -111,7 +116,7 @@ const Dashboard = () => {
                       const blob = await response.blob();
                       const imageUrls = URL.createObjectURL(blob);
                       imageUrl = [...imageUrl, { [`${filename}`]: imageUrls }];
-                      dispatch(fetchData(...urlData, imageUrl));
+                      dispatch(fetchData(imageUrl));
                     };
                     url();
                   },
@@ -122,6 +127,7 @@ const Dashboard = () => {
           }
         };
         diagram();
+        navigate("/plots");
       },
       (error) => alert(error)
     );

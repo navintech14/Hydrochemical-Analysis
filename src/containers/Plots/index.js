@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import { Button, Card, CardBody, Col, Row, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllGraph, fetchData } from "./graphSlice";
-import { map } from "lodash";
+import { map, isEmpty } from "lodash";
 
 import "./plotsStyle.scss";
 
@@ -20,6 +20,8 @@ const Plots = () => {
   const [gibbsUrl, setGibbsUrl] = useState("");
   const [chadhaUrl, setChadhaUrl] = useState("");
 
+  const [spinner, setSpinner] = useState(true);
+
   useEffect(() => {
     map(data, (item) => {
       if (item["Piper Diagram.jpg"]) setPiperUrl(item["Piper Diagram.jpg"]);
@@ -27,8 +29,20 @@ const Plots = () => {
       if (item["Gibbs Diagram.jpg"]) setGibbsUrl(item["Gibbs Diagram.jpg"]);
       if (item["Chadha Diagram.jpg"]) setChadhaUrl(item["Chadha Diagram.jpg"]);
     });
-    dispatch(fetchData([])); // eslint-disable-next-line
-  }, [dispatch]);
+  }, [data]);
+
+  useEffect(() => {
+    if (
+      piperUrl !== "" &&
+      durovUrl !== "" &&
+      gibbsUrl !== "" &&
+      chadhaUrl !== ""
+    ) {
+      setTimeout(() => {
+        setSpinner(false);
+      }, 1000);
+    }
+  }, [piperUrl, durovUrl, gibbsUrl, chadhaUrl]);
 
   return (
     <Card className="mt-3 full-height">
@@ -87,30 +101,43 @@ const Plots = () => {
             </Button>
           </Col>
         </Row>
-        <Row className="mt-3 full-height-plots">
-          <Col className="d-flex justify-content-center align-items-center text-center">
-            {piperPlot && (
-              <Col>
-                <img src={piperUrl} alt="Piper Plot" className="piperSize" />
-              </Col>
-            )}
-            {durovPlot && (
-              <Col>
-                <img src={durovUrl} alt="Durov Plot" className="durovSize" />
-              </Col>
-            )}
-            {gibbsPlot && (
-              <Col>
-                <img src={gibbsUrl} alt="Gibbs Plot" className="gibbsSize" />
-              </Col>
-            )}
-            {chadhaPlot && (
-              <Col>
-                <img src={chadhaUrl} alt="Chadha Plot" className="chadhaSize" />
-              </Col>
-            )}
-          </Col>
-        </Row>
+        {spinner && (
+          <Row className="mt-3 full-height-plots">
+            <Col className="d-flex justify-content-center align-items-center text-center">
+              <Spinner />
+            </Col>
+          </Row>
+        )}
+        {!spinner && (
+          <Row className="mt-3 full-height-plots">
+            <Col className="d-flex justify-content-center align-items-center text-center">
+              {piperPlot && (
+                <Col>
+                  <img src={piperUrl} alt="Piper Plot" className="piperSize" />
+                </Col>
+              )}
+              {durovPlot && (
+                <Col>
+                  <img src={durovUrl} alt="Durov Plot" className="durovSize" />
+                </Col>
+              )}
+              {gibbsPlot && (
+                <Col>
+                  <img src={gibbsUrl} alt="Gibbs Plot" className="gibbsSize" />
+                </Col>
+              )}
+              {chadhaPlot && (
+                <Col>
+                  <img
+                    src={chadhaUrl}
+                    alt="Chadha Plot"
+                    className="chadhaSize"
+                  />
+                </Col>
+              )}
+            </Col>
+          </Row>
+        )}
       </CardBody>
     </Card>
   );
