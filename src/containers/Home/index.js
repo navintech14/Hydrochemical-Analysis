@@ -9,7 +9,7 @@ const Home = () => {
       <CardBody className="d-flex justify-content-center align-items-center">
         <Row>
           <Col>
-            <h1 className="homePage">Home</h1>
+            <h1 className="homePage">Dashboard</h1>
           </Col>
         </Row>
       </CardBody>
