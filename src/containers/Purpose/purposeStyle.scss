@@ -2,3 +2,25 @@
   font-style: italic;
   font-weight: 300;
 }
+
+.infoButton,
+.infoButton:hover,
+.infoButton:focus,
+.infoButton:active {
+  background-color: #044553;
+  border: 1px solid #044553;
+  box-shadow: none;
+}
+
+.infoIconButton,
+.infoIconButton:hover,
+.infoIconButton:focus,
+.infoIconButton:active {
+  background-color: white;
+  border: 1px solid #044553;
+  box-shadow: none;
+}
+
+.sub {
+  font-weight: 500;
+}

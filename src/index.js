@@ -17,20 +17,20 @@ import { Container } from "reactstrap";
 import Dashboard from "containers/Dashboard";
 import Titlebar from "components/titlebar/Titlebar";
 import Navbar from "components/Navbar";
-import Home from "containers/Home";
+// import Home from "containers/Home";
 import Plots from "containers/Plots";
 import Purpose from "containers/Purpose";
 import Report from "containers/Report";
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "Dashboard",
+  //   element: <Home />,
+  //   nodeRef: createRef(),
+  // },
   {
     path: "/",
-    name: "Dashboard",
-    element: <Home />,
-    nodeRef: createRef(),
-  },
-  {
-    path: "/dataset",
     name: "Dataset",
     element: <Dashboard />,
     nodeRef: createRef(),

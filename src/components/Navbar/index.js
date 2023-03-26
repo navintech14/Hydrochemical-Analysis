@@ -26,13 +26,13 @@ function Navbar() {
           <Row className="mx-2">
             <Col>
               <Nav fill pills>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink style={navStyle} to="/">
                     Dashboard
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
-                  <NavLink style={navStyle} to="/dataset">
+                  <NavLink style={navStyle} to="/">
                     Dataset
                   </NavLink>
                 </NavItem>
