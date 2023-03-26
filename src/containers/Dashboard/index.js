@@ -19,6 +19,7 @@ import { post, postImage } from "utils/requests";
 import Papa from "papaparse";
 import BootstrapTable from "react-bootstrap-table-next";
 import { useDispatch } from "react-redux";
+import { fetchDataset } from "./dashboardSlice";
 import { fetchData } from "../Plots/graphSlice";
 import { fetchPurpose } from "containers/Purpose/purposeSlice";
 import { useNavigate } from "react-router-dom";
@@ -297,6 +298,7 @@ const Dashboard = () => {
                               skipEmptyLines: true,
                               complete: function (results) {
                                 setData(results.data);
+                                dispatch(fetchDataset(results.data));
                               },
                             });
                           }}
@@ -354,6 +356,7 @@ const Dashboard = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                   setLoader(true);
+                  dispatch(fetchDataset(manualEntry));
                   postManual(manualEntry);
                 }}
               >

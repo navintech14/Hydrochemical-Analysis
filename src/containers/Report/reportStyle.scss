@@ -2,3 +2,71 @@
   font-style: italic;
   font-weight: 300;
 }
+
+.subTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.piperReport,
+.durovReport,
+.gibbsReport,
+.chadhaReport {
+  width: 70%;
+  height: auto;
+}
+
+.reportRender {
+  position: relative;
+  height: calc(100vh - 18rem);
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid #044553;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.14);
+}
+
+.figure {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.printTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html,
+  body {
+    height: initial !important;
+    overflow: initial !important;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+@media print {
+  .page-break {
+    margin-top: 1rem;
+    display: block;
+    page-break-before: auto;
+  }
+}
+
+@page {
+  size: auto;
+  margin: 20mm;
+}
+
+.printButton,
+.printButton:hover,
+.printButton:focus,
+.printButton:active {
+  background-color: #044553;
+  box-shadow: none;
+}
