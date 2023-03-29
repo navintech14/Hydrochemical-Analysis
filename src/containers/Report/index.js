@@ -99,7 +99,7 @@ const Report = () => {
               <span className="optionTitle">Report</span>
             </Col>
           </Row>
-          <Row className="overflow-auto reportRender d-flex align-items-center mx-5 px-5 py-5">
+          <Row className="overflow-auto reportRender d-flex align-items-center px-5 py-5">
             <Row className="mb-3">
               <Col className="subTitle">Dataset:</Col>
             </Row>
@@ -226,7 +226,7 @@ const Report = () => {
               <span className="printTitle">Report</span>
             </Col>
           </Row>
-          <Row className="overflow-auto d-flex align-items-center ">
+          <Row className="overflow-auto d-flex align-items-center">
             <Row className="mb-3">
               <Col className="subTitle">Dataset:</Col>
             </Row>
