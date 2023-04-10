@@ -1,13 +1,12 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
+title: ""
 labels: enhancement ✨
-assignees: iPzard
-
+assignees: pmohanaprasad
 ---
 
-**✨  Describe the feature**<br />
+**✨ Describe the feature**<br />
 A clear and concise description of the feature you want.
 
 **Additional context**<br />

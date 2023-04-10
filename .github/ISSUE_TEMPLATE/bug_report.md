@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: ""
 labels: "bug \U0001F99F"
-assignees: iPzard
-
+assignees: pmohanaprasad
 ---
 
 **🦟 Describe the bug**<br />
@@ -12,6 +11,7 @@ A clear and concise description of what the bug is.
 
 **Steps to Reproduce**<br />
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
