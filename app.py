@@ -843,7 +843,7 @@ def gibbsPlot(df,
              fontsize=8, family='cursive')
     ax1.text(0.025, 155, 'Rock \nDominancy', va='center',
              fontname='Times New Roman', fontsize=8, family='cursive')
-    ax1.text(0.725, 10000, 'Eavporation \nDominancy', fontname='Times New Roman', ha='left',
+    ax1.text(0.725, 10000, 'Evaporation \nDominancy', fontname='Times New Roman', ha='left',
              fontsize=8, family='cursive')
 
     ax1.set_xlabel('Na$^+$/(Na$^+$+Ca$^{2+}$)', weight='normal',
@@ -903,7 +903,7 @@ def gibbsPlot(df,
              fontsize=8, family='cursive')
     ax2.text(0.025, 155, 'Rock \nDominancy', va='center',
              fontname='Times New Roman', fontsize=8, family='cursive')
-    ax2.text(0.72, 7000, 'Eavporation \nDominancy', fontname='Times New Roman',
+    ax2.text(0.72, 7000, 'Evaporation \nDominancy', fontname='Times New Roman',
              fontsize=8, family='cursive')
 
     ax2.set_xlabel('Cl$^-$/(Cl$^-$+HCO$_3^-$)',
