@@ -3,7 +3,7 @@
 **Install Node dependencies:**
 
 ```bash
-yarn install
+yarn install (Node Version 14.21.3)
 ```
 
 <br>
