@@ -28,6 +28,8 @@ yarn run start
 
 ## 📄 Application
 
+![HCA Splash](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/ef5520b6-c559-4140-98d6-82a4172fc1ef)
+
 ![HCA (1)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/77d1c765-cfe0-44f0-b40a-27c75ba6392e)
 
 ![HCA (2)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/266460bc-fc1d-497f-9ca9-151aeba42353)
