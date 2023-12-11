@@ -28,19 +28,37 @@ yarn run start
 
 ## 📄 Application
 
-![Picture7](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/9f4f6550-6228-4435-bd83-04cb2381692d)
+![HCA (1)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/77d1c765-cfe0-44f0-b40a-27c75ba6392e)
 
-![Picture6](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/5c38093e-86b9-459d-ade0-b7c808914534)
+![HCA (2)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/266460bc-fc1d-497f-9ca9-151aeba42353)
 
-![Picture5](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/2cbc914b-7e5d-4078-b36d-91e234342229)
+![HCA (3)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/cdf0871d-c817-4cee-9aaf-7c047e16cba7)
 
-![Picture4](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/041872a5-6c69-42ab-998a-dc927404f975)
+![HCA (4)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/ba428c14-efb2-48c6-8617-6ff09cada72e)
 
-![Picture3](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/858f8a9e-980a-44dd-b3f5-ac27001d7ea6)
+![HCA (5)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/32e26d04-5b0c-4a50-a4b6-1495a689cc64)
 
-![Picture2](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/6134ca76-fc75-4bab-b3cc-0cf0d18f7b99)
+![HCA (6)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/d0d49097-f785-4438-9eca-20acfe38b8a6)
 
-![Picture1](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/35b728d0-b82c-4ca2-84d3-df05583b338c)
+![HCA (7)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/13afbe9c-5050-4ccc-b351-70866309e233)
+
+![HCA (8)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/9d878cca-ae5a-4a0f-8f88-c25deffa3bff)
+
+![HCA (9)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/a768de66-c0e1-4325-b40a-897d57cc41c3)
+
+![HCA (10)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/eeab00fb-ef6f-4471-8405-adc916461158)
+
+![HCA (11)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/79bef2f1-e047-490e-90b6-637112d6459c)
+
+![HCA (12)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/a567937e-6e89-45aa-9fe2-91c92a3addca)
+
+![HCA (13)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/8ccdafe1-5d95-4e60-a999-a85ff079c115)
+
+![HCA (14)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/408dfea2-a41b-41e0-af57-ff29469292c6)
+
+![HCA (15)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/8420a6ba-ef62-4f62-a8b9-586c5839a21d)
+
+![HCA (16)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/37ffd57d-268a-4088-bb25-456e9313fa51)
 
 ## 🏷️ License
 
