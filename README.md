@@ -61,7 +61,3 @@ yarn run start
 ![HCA (15)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/8420a6ba-ef62-4f62-a8b9-586c5839a21d)
 
 ![HCA (16)](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/assets/108264884/37ffd57d-268a-4088-bb25-456e9313fa51)
-
-## 🏷️ License
-
-MIT © [pmohanaprasad](https://github.com/pmohanaprasad/Hydro-Chemical-Analysis/blob/main/LICENSE)
